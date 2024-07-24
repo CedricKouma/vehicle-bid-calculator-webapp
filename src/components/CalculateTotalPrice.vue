@@ -21,26 +21,10 @@
   </div>
 </template>
 
-<script>
-import VehicleService from '../services/VehicleService'
+<script setup>
+import useCalculateTotalPrice from './CalculateTotalPrice'
 
-export default {
-  data () {
-    return {
-      basePrice: null,
-      vehicleType: 'Common',
-      totalPrice: null
-    }
-  },
-  methods: {
-    async calculateTotalPrice () {
-      try {
-        const response = await VehicleService.getTotalPrice(this.basePrice, this.vehicleType)
-        this.totalPrice = response.data.totalPrice
-      } catch (error) {
-        console.error('There was an error calculating the price:', error)
-      }
-    }
-  }
-}
+const { basePrice, vehicleType, totalPrice, calculateTotalPrice } = useCalculateTotalPrice()
 </script>
+
+<style src="../styles/CalculateTotalPrice.css"></style>
